@@ -1,17 +1,34 @@
 body {
-    align-items: center;
+    /* align-items: center; */
     margin: 0%;
     padding: 0%;
+    background-color: #FDFBD4;
 }
 
 header {
     display: flex;
     align-items: center;
     flex-direction: row;
-    background-color: blue;
+    border-bottom: solid blue;
 }
 
 #logo {
     height: 140px;
-    width: 200px;
+    width: 175px;
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.img-car {
+    display: block;
+    justify-content: center;
+    
+    padding: 50px;
+    /* margin: 50px; */
+    border: solid lightskyblue;
+    border-radius: 3%;
 }
