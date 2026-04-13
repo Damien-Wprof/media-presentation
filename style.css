@@ -12,6 +12,11 @@ header {
     border-bottom: solid blue;
 }
 
+img {
+    max-width: 267px;
+    max-height: 400px;
+}
+
 #logo {
     height: 140px;
     width: 175px;
