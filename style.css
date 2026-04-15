@@ -37,3 +37,12 @@ img {
     border: solid lightskyblue;
     border-radius: 3%;
 }
+
+.mus-car {
+    display: block;
+    justify-content: center;
+
+    padding: 50px;
+    border: solid lightskyblue;
+    border-radius: 3%;
+}
