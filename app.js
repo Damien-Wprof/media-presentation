@@ -1,5 +1,13 @@
 let products = [];
 let musicList = [];
+let previousIndexes = [];
+let previousMusicIndexes = [];
+
+const gamesLeft = document.querySelector("#gam-left");
+const gamesRight = document.querySelector("#gam-right");
+
+const musicLeft = document.querySelector("#mus-left");
+const musicRight = document.querySelector("#mus-right");
 
 let images = document.querySelectorAll(".carousel:first-of-type .carousel-img");
 let musicImages = document.querySelectorAll(".carousel:last-of-type img");
@@ -46,36 +54,68 @@ function getRandomIndex(array) {
 }
 
 function renderImages() {
-  let usedIndexes = [];
 
-  for (let i = 0; i < images.length; i++) {
-    let randomIndex;
-
-    do {
-      randomIndex = getRandomIndex(products);
-    } while (usedIndexes.includes(randomIndex));
-
-    usedIndexes.push(randomIndex);
-    images[i].src = products[randomIndex].filepath;
+  let index1 = getRandomIndex(products);
+  while (previousIndexes.includes(index1)) {
+    index1 = getRandomIndex(products);
   }
+
+  let index2 = getRandomIndex(products);
+  while (index2 === index1 || previousIndexes.includes(index2)) {
+    index2 = getRandomIndex(products);
+  }
+
+  let index3 = getRandomIndex(products);
+  while (
+    index3 === index1 ||
+    index3 === index2 ||
+    previousIndexes.includes(index3)
+  ) {
+    index3 = getRandomIndex(products);
+  }
+
+  images[0].src = products[index1].filepath;
+  images[1].src = products[index2].filepath;
+  images[2].src = products[index3].filepath;
+
+  previousIndexes = [index1, index2, index3];
 }
 
 function renderMusic() {
-  let usedIndexes = [];
 
-  for (let i = 0; i < musicImages.length; i++) {
-    let randomIndex;
-
-    do {
-      randomIndex = getRandomIndex(musicList);
-    } while (usedIndexes.includes(randomIndex));
-
-    usedIndexes.push(randomIndex);
-    musicImages[i].src = musicList[randomIndex].filepath;
+  let index1 = getRandomIndex(musicList);
+  while (previousMusicIndexes.includes(index1)) {
+    index1 = getRandomIndex(musicList);
   }
+
+  let index2 = getRandomIndex(musicList);
+  while (index2 === index1 || previousMusicIndexes.includes(index2)) {
+    index2 = getRandomIndex(musicList);
+  }
+
+  let index3 = getRandomIndex(musicList);
+  while (
+    index3 === index1 ||
+    index3 === index2 ||
+    previousMusicIndexes.includes(index3)
+  ) {
+    index3 = getRandomIndex(musicList);
+  }
+
+  musicImages[0].src = musicList[index1].filepath;
+  musicImages[1].src = musicList[index2].filepath;
+  musicImages[2].src = musicList[index3].filepath;
+
+  previousMusicIndexes = [index1, index2, index3];
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   renderImages();
   renderMusic();
+
+  gamesLeft.addEventListener("click", renderImages);
+  gamesRight.addEventListener("click", renderImages);
+
+  musicLeft.addEventListener("click", renderMusic);
+  musicRight.addEventListener("click", renderMusic);
 });
