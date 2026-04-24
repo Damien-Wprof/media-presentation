@@ -28,10 +28,13 @@ function Music(name, filepath, description) {
 }
 
 
-new Product("Warframe", "assets/games/warframe.jpg", "Wareframe is a 3rd person looter shooter");
-new Product("Batman: Arkham Knight", "assets/games/batman.jpg", "Batman");
-new Product("Dying Light", "assets/games/dyinglight.jpg");
-new Product("Helldivers", "assets/games/helldivers.jpg");
+new Product("Warframe", "assets/games/warframe.jpg", "Enter your Warframe: a bio-metal suit of untold power. Unleash its Abilities and wield a vast array of devastating weaponry to effortlessly annihilate hordes of enemies on sight. And when the slaughter is over, you can earn or instantly unlock 40+ different Warframes - each with a unique suite of powers - to re-experience the mayhem any way you want.");
+
+new Product("Batman: Arkham Knight", "assets/games/batman.jpg", "The highly anticipated addition of this legendary vehicle, combined with the acclaimed gameplay of the Arkham series, offers gamers the ultimate and complete Batman experience as they tear through the streets and soar across the skyline of the entirety of Gotham City. In this explosive finale, Batman faces the ultimate threat against the city that he is sworn to protect, as Scarecrow returns to unite the super criminals of Gotham and destroy the Batman forever.");
+
+new Product("Dying Light", "assets/games/dyinglight.jpg", "First-person action survival game set in a post-apocalyptic open world overrun by flesh-hungry zombies. Roam a city devastated by a mysterious virus epidemic. Scavenge for supplies, craft weapons, and face hordes of the infected.");
+
+new Product("Helldivers", "assets/games/helldivers.jpg", "");
 new Product("Cyberpunk", "assets/games/cyberpunk.jpg");
 new Product("Fallout", "assets/games/fallout.jpg");
 new Product("Rimworld", "assets/games/rimworld.jpg");
@@ -114,7 +117,7 @@ function renderMusic() {
 
 
 
-// document.addEventListener("DOMContentLoaded", function() {
+ document.addEventListener("DOMContentLoaded", function() {
   renderImages();
   renderMusic();
   // img.addEventListener
@@ -123,4 +126,4 @@ function renderMusic() {
 
   musicLeft.addEventListener("click", renderMusic);
   musicRight.addEventListener("click", renderMusic);
-// });
+ });
