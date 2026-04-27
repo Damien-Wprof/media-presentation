@@ -3,6 +3,10 @@ let musicList = [];
 let previousIndexes = [];
 let previousMusicIndexes = [];
 
+
+const card = document.querySelector("#hover-card");
+const cardTitle = document.querySelector("#card-title");
+const cardDesc = document.querySelector("#card-desc");
 const gamesLeft = document.querySelector("#gam-left");
 const gamesRight = document.querySelector("#gam-right");
 
@@ -23,7 +27,7 @@ function Product(name, filepath, description) {
 function Music(name, filepath, description) {
   this.name = name;
   this.filepath = filepath;
-  this.description
+  this.description = description
   musicList.push(this);
 }
 
@@ -87,8 +91,13 @@ function renderImages() {
   }
 
   images[0].src = products[index1].filepath;
+  images[0].dataset.index = index1;
+
   images[1].src = products[index2].filepath;
+  images[1].dataset.index = index2;
+
   images[2].src = products[index3].filepath;
+  images[2].dataset.index = index3;
 
   previousIndexes = [index1, index2, index3];
 }
@@ -121,13 +130,29 @@ function renderMusic() {
   previousMusicIndexes = [index1, index2, index3];
 }
 
+images.forEach(function(img) {
+  img.addEventListener("mouseenter", function(e) {
+    const item = products[e.target.dataset.index];
 
+    cardTitle.textContent = item.name;
+    cardDesc.textContent = item.description;
 
+    card.classList.remove("hidden");
+  });
+
+  img.addEventListener("mouseleave", function(e) {
+    card.classList.add("hidden");
+  });
+
+  img.addEventListener("mousemove", function(e) {
+    card.style.left = e.pageX + 10 + "px";
+    card.style.top = e.pageY + 10 + "px";
+  });
+});
 
  document.addEventListener("DOMContentLoaded", function() {
   renderImages();
   renderMusic();
-  // img.addEventListener
   gamesLeft.addEventListener("click", renderImages);
   gamesRight.addEventListener("click", renderImages);
 
