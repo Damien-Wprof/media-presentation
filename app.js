@@ -54,16 +54,16 @@ new Product("Red Dead Redemption 2", "assets/games/rdr2.jpg", "Arthur Morgan and
 
 new Product("The Elder Scrolls V: Skyrim", "assets/games/skyrim.jpg", "Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features.");
 
-new Music ("2009 Reggie Bush - $uicideboy$", "assets/music/thywillbedone.png")
-new Music ("Clouds as Witnesses - $uicideboy$", "assets/music/cloudsaswitnesses.jpg")
-new Music ("Euphoria - Kendrick Lamar", "assets/music/euphoria.jpg")
-new Music ("Enter Sandman - Metallica", "assets/music/entersandman.jpg")
-new Music ("Eulogy - $uicideboy$", "assets/music/eulogy.jpg")
-new Music ("COUNT YOUR BLESSINGS - $uicideboy$", "assets/music/thykingdomcome.jpg")
-new Music ("Truth - Seether", "assets/music/truth.jpg")
-new Music ("Rockstar In His Prime - Juice WRLD", "assets/music/rockstar.jpg")
-new Music ("Dis $ide - GODHANDUSA","assets/music/disside.jpg")
-new Music ("Judgement - Kensuke Ushio","assets/music/judgement.jpg")
+new Music ("2009 Reggie Bush - $uicideboy$", "assets/music/thywillbedone.png", "Filler textFiller textFiller textFiller text")
+new Music ("Clouds as Witnesses - $uicideboy$", "assets/music/cloudsaswitnesses.jpg", "Filler textFiller textFiller textFiller text")
+new Music ("Euphoria - Kendrick Lamar", "assets/music/euphoria.jpg", "Filler textFiller textFiller textFiller text")
+new Music ("Enter Sandman - Metallica", "assets/music/entersandman.jpg", "Filler textFiller textFiller textFiller text")
+new Music ("Eulogy - $uicideboy$", "assets/music/eulogy.jpg", "Filler textFiller textFiller text")
+new Music ("COUNT YOUR BLESSINGS - $uicideboy$", "assets/music/thykingdomcome.jpg", "Filler textFiller textFiller text")
+new Music ("Truth - Seether", "assets/music/truth.jpg", "Filler textFiller textFiller textFiller text")
+new Music ("Rockstar In His Prime - Juice WRLD", "assets/music/rockstar.jpg", "Filler textFiller textFiller textFiller textFiller text")
+new Music ("Dis $ide - GODHANDUSA","assets/music/disside.jpg", "Filler textFiller textFiller textFiller text")
+new Music ("Judgement - Kensuke Ushio","assets/music/judgement.jpg", "Filler textFiller textFiller textFiller textFiller text")
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -124,9 +124,13 @@ function renderMusic() {
   }
 
   musicImages[0].src = musicList[index1].filepath;
-  musicImages[1].src = musicList[index2].filepath;
-  musicImages[2].src = musicList[index3].filepath;
+  musicImages[0].dataset.index = index1;
 
+  musicImages[1].src = musicList[index2].filepath;
+  musicImages[1].dataset.index = index2;
+
+  musicImages[2].src = musicList[index3].filepath;
+  musicImages[2].dataset.index = index3;
   previousMusicIndexes = [index1, index2, index3];
 }
 
@@ -141,6 +145,26 @@ images.forEach(function(img) {
   });
 
   img.addEventListener("mouseleave", function(e) {
+    card.classList.add("hidden");
+  });
+
+  img.addEventListener("mousemove", function(e) {
+    card.style.left = e.pageX + 10 + "px";
+    card.style.top = e.pageY + 10 + "px";
+  });
+});
+
+musicImages.forEach(function(img) {
+  img.addEventListener("mouseenter", function(e) {
+    const item = musicList[e.target.dataset.index];
+
+    cardTitle.textContent = item.name;
+    cardDesc.textContent = item.description;
+
+    card.classList.remove("hidden");
+  });
+
+  img.addEventListener("mouseleave", function() {
     card.classList.add("hidden");
   });
 
